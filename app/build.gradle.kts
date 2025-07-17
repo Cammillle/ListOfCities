@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     id ("kotlin-kapt")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -43,7 +44,8 @@ dependencies {
     //Dagger 2
     implementation (libs.dagger)
     kapt (libs.dagger.compiler)
-
+    //Gson
+    implementation (libs.gson)
     //Room
     implementation(libs.androidx.room.runtime)
     kapt(libs.androidx.room.compiler)
