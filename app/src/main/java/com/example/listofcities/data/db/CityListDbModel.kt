@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "city_list")
 data class CityListDbModel (
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    val id: Int = 0,
     val fullName: String,
     val shortName: String,
     val color: Int,

@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.listofcities.databinding.FragmentListBinding
 import com.example.listofcities.presentation.adapters.CityAdapter
 import com.example.listofcities.presentation.adapters.ItemTouchHelperCallback
+import com.example.listofcities.presentation.viewmodels.MainViewModel
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -19,7 +20,7 @@ class ListFragment : Fragment(), CityAdapter.OnStartDragListener {
     private lateinit var binding: FragmentListBinding
     private lateinit var listAdapter: CityAdapter
     private lateinit var itemTouchHelper: ItemTouchHelper
-//    private val viewModel: CitiesViewModel by viewModels()
+    private lateinit var viewModel: MainViewModel
 
     private var param1: String? = null
     private var param2: String? = null
@@ -30,6 +31,7 @@ class ListFragment : Fragment(), CityAdapter.OnStartDragListener {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+        observeViewModel()
     }
 
     override fun onCreateView(
@@ -74,6 +76,11 @@ class ListFragment : Fragment(), CityAdapter.OnStartDragListener {
     }
 
     private fun observeViewModel(){
+        viewModel.cityList.observe(viewLifecycleOwner){
+            it.let {
+                listAdapter.submitList(it)
+            }
+        }
 
     }
 
