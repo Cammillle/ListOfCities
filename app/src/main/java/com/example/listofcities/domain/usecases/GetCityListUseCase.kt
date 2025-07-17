@@ -5,5 +5,5 @@ import com.example.listofcities.domain.repository.CityRepository
 class GetCityListUseCase(
     private val repository: CityRepository
 ) {
-    suspend operator fun invoke() = repository.getCityList()
+    operator fun invoke() = repository.getCityList()
 }
