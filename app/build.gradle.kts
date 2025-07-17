@@ -47,6 +47,16 @@ dependencies {
     //Room
     implementation(libs.androidx.room.runtime)
     kapt(libs.androidx.room.compiler)
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation(libs.androidx.room.ktx)
+    //Coroutines
+    implementation(libs.kotlinx.coroutines.android)
+    // ViewModel
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    // LiveData
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+    // Annotation processor
+    kapt(libs.androidx.lifecycle.compiler)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
