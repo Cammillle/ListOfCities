@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "city_list")
-data class CityListDbModel (
+data class CityListEntity (
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
     val fullName: String,

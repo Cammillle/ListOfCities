@@ -6,14 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.map
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.listofcities.databinding.FragmentListBinding
 import com.example.listofcities.presentation.adapters.CityAdapter
 import com.example.listofcities.presentation.adapters.ItemTouchHelperCallback
-import com.example.listofcities.presentation.viewmodels.MainViewModel
+import com.example.listofcities.presentation.viewmodels.MenuViewModel
 
 private const val ID = "LIST_ID"
 
@@ -21,7 +20,7 @@ class ListFragment : Fragment(), CityAdapter.OnStartDragListener {
     private lateinit var binding: FragmentListBinding
     private lateinit var listAdapter: CityAdapter
     private lateinit var itemTouchHelper: ItemTouchHelper
-    private lateinit var viewModel: MainViewModel
+    private lateinit var viewModel: MenuViewModel
 
     private var id: Int? = null
 
@@ -30,7 +29,7 @@ class ListFragment : Fragment(), CityAdapter.OnStartDragListener {
         arguments?.let {
             id = it.getInt(ID)
         }
-        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
+        viewModel = ViewModelProvider(this)[MenuViewModel::class.java]
         observeViewModel()
     }
 

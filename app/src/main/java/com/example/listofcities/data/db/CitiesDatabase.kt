@@ -2,23 +2,27 @@ package com.example.listofcities.data.db
 
 import android.content.Context
 import android.graphics.Color
-import android.telecom.Call
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.example.listofcities.data.db.dao.CityDao
+import com.example.listofcities.data.db.dao.CityListDao
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @Database(
-    entities = [CityListDbModel::class, CityDbModel::class],
+    entities = [CityListEntity::class, CityEntity::class],
     version = 1,
     exportSchema = false
 )
 @TypeConverters(Converters::class)
 abstract class CitiesDatabase : RoomDatabase() {
+
+    abstract fun cityDao(): CityDao
+    abstract fun cityListDao(): CityListDao
 
     companion object {
         private var db: CitiesDatabase? = null
@@ -50,18 +54,18 @@ abstract class CitiesDatabase : RoomDatabase() {
         private suspend fun prepopulateData(db:CitiesDatabase){
             //Все доступные города
             val allCities = listOf(
-                CityDbModel(name = "Париж", year = "III век до н.э."),
-                CityDbModel(name = "Вена", year = "1147 год"),
-                CityDbModel(name = "Берлин", year = "1237 год"),
-                CityDbModel(name = "Варшава", year = "1321 год"),
-                CityDbModel(name = "Милан", year = "1899 год"),
-                CityDbModel(name = "Лондон", year = "43 год"),
-                CityDbModel(name = "Мадрид", year = "852 год"),
-                CityDbModel(name = "Рим", year = "753 год до н.э."),
-                CityDbModel(name = "Прага", year = "870 год"),
-                CityDbModel(name = "Будапешт", year = "1873 год")
+                CityEntity(name = "Париж", year = "III век до н.э."),
+                CityEntity(name = "Вена", year = "1147 год"),
+                CityEntity(name = "Берлин", year = "1237 год"),
+                CityEntity(name = "Варшава", year = "1321 год"),
+                CityEntity(name = "Милан", year = "1899 год"),
+                CityEntity(name = "Лондон", year = "43 год"),
+                CityEntity(name = "Мадрид", year = "852 год"),
+                CityEntity(name = "Рим", year = "753 год до н.э."),
+                CityEntity(name = "Прага", year = "870 год"),
+                CityEntity(name = "Будапешт", year = "1873 год")
             )
-            val cityList = CityListDbModel(
+            val cityList = CityListEntity(
                 id = 1,
                 fullName = "Список городов в Европе",
                 shortName = "Европа",
@@ -71,8 +75,6 @@ abstract class CitiesDatabase : RoomDatabase() {
             db.cityDao().loadCityList(cityList)
         }
     }
-
-    abstract fun cityDao(): CityDao
 
 
 

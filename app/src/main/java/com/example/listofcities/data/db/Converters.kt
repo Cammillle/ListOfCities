@@ -6,15 +6,15 @@ import com.google.gson.reflect.TypeToken
 
 class Converters {
     private val gson = Gson()
-    private val type = object : TypeToken<List<CityDbModel>>() {}.type
+    private val type = object : TypeToken<List<CityEntity>>() {}.type
 
     @TypeConverter
-    fun toString(list: List<CityDbModel>): String {
+    fun toString(list: List<CityEntity>): String {
         return gson.toJson(list)
     }
 
     @TypeConverter
-    fun fromString(value: String):List<CityDbModel>{
+    fun fromString(value: String):List<CityEntity>{
         return if (value == null) {
             emptyList()
         } else {

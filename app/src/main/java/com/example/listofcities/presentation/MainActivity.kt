@@ -5,11 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.listofcities.R
 import com.example.listofcities.databinding.ActivityMainBinding
-import com.example.listofcities.presentation.viewmodels.MainViewModel
+import com.example.listofcities.presentation.viewmodels.MenuViewModel
 
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var viewModel: MainViewModel
+    private lateinit var viewModel: MenuViewModel
     private val binding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         setupBottomNavView()
-        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
+        viewModel = ViewModelProvider(this)[MenuViewModel::class.java]
 
 
         viewModel.currentCityList_.observe(this){

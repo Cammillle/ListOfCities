@@ -1,12 +1,10 @@
 package com.example.listofcities.data.db
 
-import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import kotlinx.parcelize.Parcelize
 
 @Entity(tableName = "cities")
-data class CityDbModel(
+data class CityEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
     val name: String,

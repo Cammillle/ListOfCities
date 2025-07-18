@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
 import com.example.listofcities.data.db.CitiesDatabase
 import com.example.listofcities.data.mapper.CityMapper
+import com.example.listofcities.domain.CityDto
 import com.example.listofcities.domain.CityListDto
 import com.example.listofcities.domain.repository.CityRepository
 
@@ -12,25 +13,27 @@ class CityRepositoryImpl(
     private val application: Application
 ) : CityRepository {
 
-    private val dao = CitiesDatabase.getInstance(application).cityDao()
+    private val cityDao = CitiesDatabase.getInstance(application).cityDao()
+    private val cityListDao = CitiesDatabase.getInstance(application).cityListDao()
     private val mapper = CityMapper()
 
-
-    override fun getCityLists(): LiveData<List<CityListDto>> {
-        return dao.getCityLists().map { it ->
-            it.map {
-                mapper.mapDbModelToDtoCityList(it)
-            }
+    override suspend fun getAllCities(): List<CityDto> {
+        return cityDao.getAllCities().map {
+            mapper.mapDbModelToDtoCity(it)
         }
     }
 
-    override fun getCityList(id: Int): LiveData<CityListDto> {
-        return dao.getCityList(id).map {
+    override suspend fun getCityLists(): List<CityListDto> {
+        return cityListDao.getAllCityLists().map {
             mapper.mapDbModelToDtoCityList(it)
         }
     }
 
-    override suspend fun loadCityList(cityList: CityListDto) {
-        dao.loadCityList(mapper.mapDtoToDbModelCityList(cityList))
+    override suspend fun addCityList(cityList: CityListDto) {
+        cityListDao.insertCityList(
+            mapper.mapDtoToDbModelCityList(cityList)
+        )
     }
+
+
 }
