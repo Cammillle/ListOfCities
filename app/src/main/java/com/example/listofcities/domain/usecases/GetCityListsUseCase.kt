@@ -2,8 +2,8 @@ package com.example.listofcities.domain.usecases
 
 import com.example.listofcities.domain.repository.CityRepository
 
-class GetCityListUseCase(
+class GetCityListsUseCase(
     private val repository: CityRepository
 ) {
-    operator fun invoke(id:Int) = repository.getCityList(id)
+    operator fun invoke() = repository.getCityLists()
 }

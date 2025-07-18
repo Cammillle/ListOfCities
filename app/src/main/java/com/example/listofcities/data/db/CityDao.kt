@@ -9,7 +9,10 @@ import androidx.room.Query
 @Dao
 interface CityDao {
     @Query("SELECT * FROM city_list")
-    fun getCityList(): LiveData<List<CityListDbModel>>
+    fun getCityLists(): LiveData<List<CityListDbModel>>
+
+    @Query("SELECT * FROM city_list where id == :id limit 1")
+    fun getCityList(id: Int): LiveData<CityListDbModel>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun loadCityList(cityList: CityListDbModel)

@@ -62,6 +62,7 @@ abstract class CitiesDatabase : RoomDatabase() {
                 CityDbModel(name = "Будапешт", year = "1873 год")
             )
             val cityList = CityListDbModel(
+                id = 1,
                 fullName = "Список городов в Европе",
                 shortName = "Европа",
                 color = Color.BLUE,

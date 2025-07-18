@@ -10,5 +10,5 @@ data class CityListDbModel (
     val fullName: String,
     val shortName: String,
     val color: Int,
-    val cities: List<CityDbModel>
+    val cityIds: List<Int>
 )

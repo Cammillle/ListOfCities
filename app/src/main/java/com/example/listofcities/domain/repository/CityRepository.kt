@@ -5,7 +5,9 @@ import com.example.listofcities.domain.CityListDto
 
 interface CityRepository {
 
-    fun getCityList():LiveData<List<CityListDto>>
+    fun getCityLists():LiveData<List<CityListDto>>
+
+    fun getCityList(id:Int):LiveData<CityListDto>
 
     suspend fun loadCityList(cityList: CityListDto)
 }

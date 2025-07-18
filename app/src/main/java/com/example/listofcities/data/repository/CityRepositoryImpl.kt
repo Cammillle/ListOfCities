@@ -15,11 +15,18 @@ class CityRepositoryImpl(
     private val dao = CitiesDatabase.getInstance(application).cityDao()
     private val mapper = CityMapper()
 
-    override fun getCityList(): LiveData<List<CityListDto>> {
-        return dao.getCityList().map { it ->
+
+    override fun getCityLists(): LiveData<List<CityListDto>> {
+        return dao.getCityLists().map { it ->
             it.map {
                 mapper.mapDbModelToDtoCityList(it)
             }
+        }
+    }
+
+    override fun getCityList(id: Int): LiveData<CityListDto> {
+        return dao.getCityList(id).map {
+            mapper.mapDbModelToDtoCityList(it)
         }
     }
 

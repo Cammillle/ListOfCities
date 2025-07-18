@@ -60,6 +60,7 @@ dependencies {
     // Annotation processor
     kapt(libs.androidx.lifecycle.compiler)
 
+    implementation ("androidx.fragment:fragment:1.8.8")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
