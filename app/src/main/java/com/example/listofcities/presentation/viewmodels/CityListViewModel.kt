@@ -5,20 +5,20 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.listofcities.domain.CityDto
-import com.example.listofcities.domain.usecases.GetCitiesUseCase
+import com.example.listofcities.domain.usecases.GetCitiesForListUseCase
 import kotlinx.coroutines.launch
 
 //Отображение городов из списка на главном экране
 class CityListViewModel(
-    private val getCities: GetCitiesUseCase
+    private val getCitiesForList: GetCitiesForListUseCase
 ) : ViewModel() {
 
     private val _cities = MutableLiveData<List<CityDto>>()
     val cities: LiveData<List<CityDto>> = _cities
 
-    fun loadCities(){
+    fun loadCitiesForList(listId:Int){
         viewModelScope.launch {
-            _cities.value = getCities()
+            _cities.value = getCitiesForList(listId)
         }
     }
 

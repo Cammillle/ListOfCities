@@ -1,4 +1,4 @@
-package com.example.listofcities.data.db
+package com.example.listofcities.data.db.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -9,6 +9,5 @@ data class CityListEntity (
     val id: Int = 0,
     val fullName: String,
     val shortName: String,
-    val color: Int,
-    val cityIds: List<Int>
+    val color: Int
 )

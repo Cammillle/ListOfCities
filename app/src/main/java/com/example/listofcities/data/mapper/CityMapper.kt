@@ -1,7 +1,7 @@
 package com.example.listofcities.data.mapper
 
-import com.example.listofcities.data.db.CityEntity
-import com.example.listofcities.data.db.CityListEntity
+import com.example.listofcities.data.db.entity.CityEntity
+import com.example.listofcities.data.db.entity.CityListEntity
 import com.example.listofcities.domain.CityDto
 import com.example.listofcities.domain.CityListDto
 
@@ -28,7 +28,7 @@ class CityMapper {
         cities = dbModel.cities.map {mapDbModelToDtoCity(it) }
     )
 
-    fun mapDbModelToDtoCity(dbModel:CityEntity) = CityDto(
+    fun mapDbModelToDtoCity(dbModel: CityEntity) = CityDto(
         year = dbModel.year,
         name = dbModel.name
     )

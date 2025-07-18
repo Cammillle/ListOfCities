@@ -1,4 +1,4 @@
-package com.example.listofcities.data.db
+package com.example.listofcities.data.db.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

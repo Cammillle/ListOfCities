@@ -10,4 +10,8 @@ interface CityRepository {
     suspend fun getCityLists(): List<CityListDto>
 
     suspend fun addCityList(cityList: CityListDto)
+
+    suspend fun insertInitialData()
+
+    suspend fun getCitiesForList(listId: Int): List<CityDto>
 }
