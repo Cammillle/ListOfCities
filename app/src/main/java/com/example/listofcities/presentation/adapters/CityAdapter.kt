@@ -1,7 +1,6 @@
 package com.example.listofcities.presentation.adapters
 
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -11,14 +10,8 @@ import com.example.listofcities.R
 import com.example.listofcities.domain.CityDto
 import java.util.Collections
 
-class CityAdapter(
-    private val dragListener: OnStartDragListener
-) : ListAdapter<CityDto, CityAdapter.CityViewHolder>(CityItemDiffCallback()),
+class CityAdapter: ListAdapter<CityDto, CityAdapter.CityViewHolder>(CityItemDiffCallback()),
     ItemTouchHelperAdapter {
-
-    interface OnStartDragListener {
-        fun onStartDrag(viewHolder: RecyclerView.ViewHolder)
-    }
 
     class CityViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val cityName = itemView.findViewById<TextView>(R.id.tvCityName)
@@ -32,22 +25,17 @@ class CityAdapter(
     }
 
     override fun onBindViewHolder(holder: CityViewHolder, position: Int) {
-        val shopItem = getItem(position)
-        holder.cityName.text = shopItem.name
-        holder.cityYear.text = shopItem.year
+        val cityItem = getItem(position)
+        holder.cityName.text = cityItem.name
+        holder.cityYear.text = cityItem.year
 
-        holder.itemView.setOnTouchListener { _, event ->
-            if (event.action == MotionEvent.ACTION_DOWN) {
-                dragListener.onStartDrag(holder)
-            }
-            false
-        }
     }
 
-    override fun onItemMove(fromPosition: Int, toPosition: Int) {
+    override fun onItemMove(fromPosition: Int, toPosition: Int): Boolean {
         val currentList = currentList.toMutableList()
         Collections.swap(currentList,fromPosition,toPosition)
         submitList(currentList)
+        return true
     }
 
 

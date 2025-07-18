@@ -18,20 +18,23 @@ class MenuViewModel(
     private val _lists = MutableLiveData<List<CityListDto>>()
     val lists: LiveData<List<CityListDto>> = _lists
 
-    val activeList = MutableLiveData<CityListDto>()
+    private val _activeList = MutableLiveData<CityListDto>()
+    val activeList:LiveData<CityListDto>
+        get() = _activeList
+
 
     fun loadLists() {
         viewModelScope.launch {
             val loadedLists = getCityLists()
             _lists.value = loadedLists
-            if (activeList.value == null && loadedLists.isNotEmpty()) {
-                activeList.value = loadedLists.first()
+            if (_activeList.value == null && loadedLists.isNotEmpty()) {
+                _activeList.value = loadedLists.first()
             }
         }
     }
 
     fun selectList(list: CityListDto) {
-        activeList.value = list
+        _activeList.value = list
     }
 
     fun addNewList(list: CityListDto) {

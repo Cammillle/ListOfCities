@@ -8,6 +8,7 @@ import com.example.listofcities.data.db.dao.CityListDao
 import com.example.listofcities.data.db.entity.CityEntity
 import com.example.listofcities.data.db.entity.CityListCrossRef
 import com.example.listofcities.data.db.entity.CityListEntity
+import com.example.listofcities.data.db.entity.CityListWithCities
 import com.example.listofcities.data.mapper.CityMapper
 import com.example.listofcities.domain.CityDto
 import com.example.listofcities.domain.CityListDto
@@ -30,6 +31,10 @@ class CityRepositoryImpl(
         return cityListDao.getAllCityLists().map {
             mapper.mapDbModelToDtoCityList(it.cityList)
         }
+    }
+
+    override suspend fun getCityListsWithCities(): List<CityListWithCities> {
+        TODO("Not yet implemented")
     }
 
     override suspend fun addCityList(cityList: CityListDto) {

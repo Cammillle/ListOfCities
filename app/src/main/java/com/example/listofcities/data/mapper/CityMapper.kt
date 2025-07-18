@@ -12,7 +12,6 @@ class CityMapper {
         fullName = dto.fullName,
         shortName = dto.shortName,
         color = dto.color,
-        cities = dto.cities.map { mapDtoToDbModelCity(it) }
     )
 
     fun mapDtoToDbModelCity(dto:CityDto) = CityEntity(
@@ -25,7 +24,6 @@ class CityMapper {
         fullName = dbModel.fullName,
         shortName = dbModel.shortName,
         color = dbModel.color,
-        cities = dbModel.cities.map {mapDbModelToDtoCity(it) }
     )
 
     fun mapDbModelToDtoCity(dbModel: CityEntity) = CityDto(

@@ -1,6 +1,7 @@
 package com.example.listofcities.domain.repository
 
 import androidx.lifecycle.LiveData
+import com.example.listofcities.data.db.entity.CityListWithCities
 import com.example.listofcities.domain.CityDto
 import com.example.listofcities.domain.CityListDto
 
@@ -8,6 +9,7 @@ interface CityRepository {
     suspend fun getAllCities(): List<CityDto>
 
     suspend fun getCityLists(): List<CityListDto>
+    suspend fun getCityListsWithCities(): List<CityListWithCities>
 
     suspend fun addCityList(cityList: CityListDto)
 

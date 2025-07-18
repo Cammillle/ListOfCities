@@ -9,7 +9,11 @@ data class CityListWithCities(
     @Relation(
         parentColumn = "id",
         entityColumn = "id",
-        associateBy = Junction(CityListCrossRef::class)
+        associateBy = Junction(
+            value = CityListCrossRef::class,
+            parentColumn = "listId",
+            entityColumn = "cityId"
+        )
     )
     val cities: List<CityEntity>
 )
